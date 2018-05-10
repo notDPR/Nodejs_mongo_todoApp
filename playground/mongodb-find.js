@@ -37,6 +37,5 @@ MongoClient.connect('mongodb://localhost:27017' , (err,client)=>{
     console.log('Unable to fetch docs',err);
   }) ;
 
-
   // client.close();
 });
