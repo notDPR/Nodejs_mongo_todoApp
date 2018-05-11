@@ -17,11 +17,11 @@ app.post('/todos',(req,res)=>{
     completed : req.body.completed
   });
   todo.save().then((doc)=>{
-    console.log('New Doc saved' , doc) ;
+    // console.log('New Doc saved' , doc) ;
     res.send(doc);
   },(err)=>{
-    console.log('doc not saved',err);
-    res.send(err) ;
+    // console.log('doc not saved',err);
+    res.status(400).send(err) ;
   }) ;
 });
 
@@ -30,3 +30,6 @@ app.post('/todos',(req,res)=>{
 app.listen(3000,()=>{
   console.log('Started on port 3000');
 });
+
+
+module.exports = {app} ;
