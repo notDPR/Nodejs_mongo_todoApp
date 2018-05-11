@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const {ObjectID} = require('mongodb');
 
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo') ;
@@ -32,6 +33,29 @@ app.get('/todos', (req, res) => {
     res.status(400).send(e);
   })
 });
+
+// req.params gets you variables in the URl like here 'id'
+app.get('/todos/:id',(req,res)=>{
+  // ID validation
+  var id = req.params.id ;
+  if(!ObjectID.isValid(id)) res.status(404).send();
+
+  // find that ID in db
+  Todo.findById(id).then((todo)=>{
+    // todo not found
+    if(!todo) res.status(404).send();
+    // todo found
+    res.send({todo});
+  })
+  .catch((err)=>{
+    console.log(err) ;
+    res.status(400).send();
+  });
+});
+
+
+
+
 
 // ----------------------------------------------------- //
 
