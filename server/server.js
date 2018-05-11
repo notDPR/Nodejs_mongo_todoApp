@@ -38,12 +38,12 @@ app.get('/todos', (req, res) => {
 app.get('/todos/:id',(req,res)=>{
   // ID validation
   var id = req.params.id ;
-  if(!ObjectID.isValid(id)) res.status(404).send();
+  if(!ObjectID.isValid(id)) return res.status(404).send();
 
   // find that ID in db
   Todo.findById(id).then((todo)=>{
     // todo not found
-    if(!todo) res.status(404).send();
+    if(!todo) return res.status(404).send();
     // todo found
     res.send({todo});
   })
