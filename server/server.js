@@ -73,8 +73,7 @@ app.patch('/todos/:id' , (req,res)=>{
   var body = _.pick(req.body , ['text','completed']);
   if(!ObjectID.isValid(id)) return res.status(400).send();
 
-  if(_.isBoolean(body.completed) && body.completed)
-  {
+  if(_.isBoolean(body.completed) && body.completed){
     body.completedAt =  new Date().getTime() ;
     // gets no. of milliseconds from 1/1/1970
   }
@@ -90,14 +89,10 @@ app.patch('/todos/:id' , (req,res)=>{
   )
   .then((todo)=>{
     if(!todo) return res.status(404).send();
-
+    // console.log(todo);
     res.send({todo}) ;
   })
   .catch((err)=>res.status(400).send()) ;
-
-
-
-
 });
 
 
