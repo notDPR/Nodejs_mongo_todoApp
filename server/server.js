@@ -79,8 +79,8 @@ app.patch('/todos/:id' , (req,res)=>{
     // gets no. of milliseconds from 1/1/1970
   }
   else{
-    body.completedAt = false ;
-    body.completed = null ;
+    body.completedAt = null ;
+    body.completed = false ;
   }
 
   Todo.findByIdAndUpdate(id,{
