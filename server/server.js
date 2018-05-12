@@ -1,3 +1,4 @@
+require('./config/config');
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,7 +9,7 @@ var {Todo} = require('./models/todo') ;
 var {User} = require('./models/user') ;
 
 var app = express();
-const port = process.env.PORT || 3000 ;
+const port = process.env.PORT || 3000;
 
 //middleware
 app.use(bodyParser.json());
@@ -95,13 +96,10 @@ app.patch('/todos/:id' , (req,res)=>{
   .catch((err)=>res.status(400).send()) ;
 });
 
-
-
 // --------------------------------------------------------------- //
 
 app.listen(port,()=>{
   console.log('App is live on',port);
 });
-
 
 module.exports = {app} ;
